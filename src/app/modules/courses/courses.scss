@@ -11,3 +11,11 @@ mat-card{
   background: var(--mat-sys-primary);
   color: var(--mat-sys-on-primary);
 }
+
+.loading-spinner{
+  padding: 20px;
+  background-color: rgba(128, 128, 128, 0.452);
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
