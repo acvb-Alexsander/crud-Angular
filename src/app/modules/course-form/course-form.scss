@@ -1,0 +1,27 @@
+mat-card{
+  padding: 20px;
+  max-width: 90%;
+  margin: 2em auto;
+  text-align: center;
+  mat-toolbar{
+    color-scheme: light;
+    background: var(--mat-sys-primary);
+    color: var(--mat-sys-on-primary);
+    margin-bottom: 10px;
+  }
+}
+
+mat-form-field{
+  margin-right: 10px;
+  width: 100%;
+}
+
+.min-width{
+  width: 100%;
+  min-width: 150px;
+}
+
+mat-card-actions{
+  display: flex;
+  justify-content: center;
+}

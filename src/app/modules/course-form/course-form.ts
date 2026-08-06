@@ -1,0 +1,58 @@
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
+import { MatToolbar } from '@angular/material/toolbar';
+import { MatAnchor } from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
+import { CoursesService } from '../../service/coursesService';
+import { error } from 'console';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+
+@Component({
+  selector: 'app-course-form',
+  imports: [
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatToolbar,
+    MatCardModule,
+    MatAnchor,
+    MatButtonModule,
+    MatSelectModule,
+    MatSnackBarModule,
+  ],
+  templateUrl: './course-form.html',
+  styleUrl: './course-form.scss',
+})
+export class CourseForm implements OnInit {
+  form: FormGroup;
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private courseService: CoursesService,
+    private snackBar: MatSnackBar,
+  ) {
+    this.form = this.formBuilder.group({
+      name: [null, Validators.required],
+      category: [null, Validators.required],
+    });
+  }
+
+  ngOnInit(): void {}
+
+  onSubmit() {
+    this.courseService.save(this.form.value).subscribe(
+      (result) => console.log(result),
+      (error) => this.onError(),
+    );
+  }
+
+  onCancel() {}
+
+  onError() {
+    this.snackBar.open('Erro ao salvar curso', '', { duration: 3000 });
+  }
+}

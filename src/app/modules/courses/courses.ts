@@ -12,6 +12,8 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ErrorDialog } from '../../shared/components/error-dialog/error-dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { CategoryPipe } from '../../shared/pipes/category-pipe';
+import { MatButtonModule } from '@angular/material/button';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-courses',
@@ -28,19 +30,21 @@ import { CategoryPipe } from '../../shared/pipes/category-pipe';
     MatDialogModule,
     MatIconModule,
     CategoryPipe,
+    MatButtonModule,
   ],
 
   templateUrl: './courses.html',
   styleUrl: './courses.scss',
 })
 export class Courses implements OnInit {
-  displayedColumns: string[] = ['name', 'category'];
+  displayedColumns: string[] = ['_id', 'name', 'category', 'actions'];
 
   courses$: Observable<CoursesInter[]>;
 
   constructor(
     private coursesService: CoursesService,
     public dialog: MatDialog,
+    private router: Router,
   ) {
     this.courses$ = this.coursesService.list().pipe(
       catchError((error) => {
@@ -57,4 +61,8 @@ export class Courses implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  onAddCourse() {
+    this.router.navigate(['course-form']);
+  }
 }
