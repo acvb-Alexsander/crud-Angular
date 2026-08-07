@@ -7,7 +7,7 @@ import { MatToolbar } from '@angular/material/toolbar';
 import { MatAnchor } from '@angular/material/button';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
-import { CoursesService } from '../../service/coursesService';
+import { CoursesService } from '../../../service/coursesService';
 import { error } from 'console';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { Location } from '@angular/common';
@@ -38,18 +38,18 @@ export class CourseForm implements OnInit {
     private location: Location,
   ) {
     this.form = this.formBuilder.group({
-      name: [null, Validators.required],
-      category: [null, Validators.required],
+      name: ['', Validators.required],
+      category: ['', Validators.required],
     });
   }
 
   ngOnInit(): void {}
 
   onSubmit() {
-    this.courseService.save(this.form.value).subscribe(
-      (result) => this.onSuccess(),
-      (error) => this.onError(),
-    );
+    this.courseService.save(this.form.value).subscribe({
+      next: () => this.onSuccess(),
+      error: () => this.onError(),
+    });
   }
 
   onCancel() {
