@@ -41,10 +41,10 @@
       </button>
 
       <button matMiniFab aria-label="Deletar curso">
-        <mat-icon>delete</mat-icon>
+        <mat-icon (click)="onDelete(course)">delete</mat-icon>
       </button>
     </mat-cell>
   </ng-container>
-  <mat-row mat-header-row *matHeaderRowDef="displayedColumns"></mat-row>
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
 </mat-table>

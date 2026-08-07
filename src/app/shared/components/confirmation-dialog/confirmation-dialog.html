@@ -1,0 +1,20 @@
+<div mat-dialog-content>
+  <p>{{ data }}</p>
+  <div mat-dialog-actions>
+    <button
+      style="background: var(--mat-sys-primary); color: white"
+      mat-button
+      (click)="onConfirm(true)"
+    >
+      Sim
+    </button>
+    <button
+      style="color-scheme: light; color: white; background-color: rgb(240, 51, 51) !important"
+      ;
+      mat-button
+      (click)="onConfirm(false)"
+    >
+      Não
+    </button>
+  </div>
+</div>
