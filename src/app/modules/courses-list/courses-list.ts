@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { CoursesInter } from '../../../interface/courses_Inter';
-import { CategoryPipe } from '../../../shared/pipes/category-pipe';
+import { CoursesInter } from '../../interface/courses_Inter';
+import { CategoryPipe } from '../../shared/pipes/category-pipe';
 
 @Component({
   selector: 'app-courses-list',
@@ -19,6 +19,7 @@ export class CoursesList implements OnInit {
   @Input() courses: CoursesInter[] = [];
   @Output() add = new EventEmitter<boolean>(false);
   @Output() edit = new EventEmitter<CoursesInter>();
+  @Output() delete = new EventEmitter<CoursesInter>();
   constructor() {}
 
   ngOnInit(): void {}
@@ -29,5 +30,9 @@ export class CoursesList implements OnInit {
 
   onEdit(course: CoursesInter) {
     this.edit.emit(course);
+  }
+
+  onDelete(course: CoursesInter) {
+    this.delete.emit(course);
   }
 }

@@ -10,6 +10,7 @@
             [courses]="courses"
             (add)="onAddCourse()"
             (edit)="onEdit($event)"
+            (delete)="onDelete($event)"
           ></app-courses-list>
         </div>
       } @else {
