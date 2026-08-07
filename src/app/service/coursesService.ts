@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { delay, first, tap } from 'rxjs/operators';
 import { CoursesInter } from '../interface/courses_Inter';
 import { Observable } from 'rxjs';
@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 export class CoursesService {
   private readonly Api = 'api/courses';
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private readonly httpClient: HttpClient) {}
 
   list(): Observable<CoursesInter[]> {
     return this.httpClient.get<CoursesInter[]>(this.Api).pipe(
@@ -20,7 +20,7 @@ export class CoursesService {
     );
   }
 
-  save(record: CoursesInter) {
+  save(record: Partial<CoursesInter>) {
     return this.httpClient.post<CoursesInter>(this.Api, record).pipe(first());
   }
 }

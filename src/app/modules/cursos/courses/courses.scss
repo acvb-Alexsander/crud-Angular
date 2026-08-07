@@ -4,6 +4,12 @@ mat-card{
   border-radius: 10px;
 }
 
+.column-flex{
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+}
+
 .toolbar{
 
   border-radius: 5px;
