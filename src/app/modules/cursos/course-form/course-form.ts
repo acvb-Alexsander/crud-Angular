@@ -11,6 +11,8 @@ import { CoursesService } from '../../../service/coursesService';
 import { error } from 'console';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { Location } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
+import { CoursesInter } from '../../../interface/courses_Inter';
 
 @Component({
   selector: 'app-course-form',
@@ -36,14 +38,23 @@ export class CourseForm implements OnInit {
     private courseService: CoursesService,
     private snackBar: MatSnackBar,
     private location: Location,
+    private route: ActivatedRoute,
   ) {
     this.form = this.formBuilder.group({
+      _id: [''],
       name: ['', Validators.required],
       category: ['', Validators.required],
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const course: CoursesInter = this.route.snapshot.data['course'];
+    this.form.setValue({
+      _id: course._id,
+      name: course.name,
+      category: course.category,
+    });
+  }
 
   onSubmit() {
     this.courseService.save(this.form.value).subscribe({
