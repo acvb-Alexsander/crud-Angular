@@ -18,11 +18,16 @@ export class CoursesList implements OnInit {
 
   @Input() courses: CoursesInter[] = [];
   @Output() add = new EventEmitter<boolean>(false);
+  @Output() edit = new EventEmitter<CoursesInter>();
   constructor() {}
 
   ngOnInit(): void {}
 
   onAddCourse() {
     this.add.emit(true);
+  }
+
+  onEdit(course: CoursesInter) {
+    this.edit.emit(course);
   }
 }

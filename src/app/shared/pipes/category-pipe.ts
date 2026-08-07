@@ -11,7 +11,7 @@ export class CategoryPipe implements PipeTransform {
       case 'Back-end':
         return 'api';
       case 'Fullstack':
-        return 'code_blocks';
+        return 'logo_dev';
     }
     return value;
   }

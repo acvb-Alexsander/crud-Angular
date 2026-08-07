@@ -65,4 +65,8 @@ export class Courses implements OnInit {
   onAddCourse() {
     this.router.navigate(['course-form']);
   }
+
+  onEdit(course: CoursesInter) {
+    this.router.navigate(['course-edit', course._id]);
+  }
 }

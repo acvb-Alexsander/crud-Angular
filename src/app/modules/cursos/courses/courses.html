@@ -6,7 +6,11 @@
     <div class="column-flex mat-elevation-z8">
       @if (courses$ | async; as courses) {
         <div>
-          <app-courses-list [courses]="courses" (add)="onAddCourse()"></app-courses-list>
+          <app-courses-list
+            [courses]="courses"
+            (add)="onAddCourse()"
+            (edit)="onEdit($event)"
+          ></app-courses-list>
         </div>
       } @else {
         <div class="loading-spinner">

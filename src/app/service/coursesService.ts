@@ -21,6 +21,21 @@ export class CoursesService {
   }
 
   save(record: Partial<CoursesInter>) {
+    if (record._id) {
+      return this.update(record);
+    }
+    return this.create(record);
+  }
+
+  loadById(id: string) {
+    return this.httpClient.get<CoursesInter>(`${this.Api}/${id}`);
+  }
+
+  private create(record: Partial<CoursesInter>) {
     return this.httpClient.post<CoursesInter>(this.Api, record).pipe(first());
+  }
+
+  private update(record: Partial<CoursesInter>) {
+    return this.httpClient.put<CoursesInter>(`${this.Api}/${record._id}`, record).pipe(first());
   }
 }
